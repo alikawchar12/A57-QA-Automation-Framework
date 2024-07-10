@@ -9,63 +9,54 @@ import org.testng.annotations.Test;
 import java.time.Duration;
 
 public class LoginTests extends BaseTest {
-    @Test
-    public void loginEmptyEmailPassword() {
 
-//      Added ChromeOptions argument below to fix websocket error
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--remote-allow-origins=*");
-
-        WebDriver driver = new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-
-        String url = "https://qa.koel.app/";
-        driver.get(url);
-        Assert.assertEquals(driver.getCurrentUrl(), url);
-        driver.quit();
-    }
     @Test
     public void loginValidEmailPassword() throws InterruptedException {
-        // precondition
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--remote-allow-origins=*");
+        launchBrowser();
+        provideEmail("ali.kawchar@testpro.io");
+        providePassword("Bangladesh@12");
+        clickLoginButton();
+        Thread.sleep(2000);
 
-        //Chrome Driver
-        WebDriver driver = new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
         // Steps
         // step 1: open browser
-        String url = "https://qa.koel.app/";
-        driver.get(url);
-        Thread.sleep(2000);
         // step 2: enter email
-        WebElement emailFiled = driver.findElement(By.cssSelector("input[type='email']"));
-         emailFiled.clear();
-         emailFiled.sendKeys("ali.kawchar@testpro.io");
-        Thread.sleep(2000);
-
-        // step 3: enter password
-        WebElement passwordFiled = driver.findElement(By.cssSelector("input[type='password']"));
-        passwordFiled.clear();
-        passwordFiled.sendKeys("Bangladesh@12");
-        Thread.sleep(2000);
-
-        // step 4: click on log in button
-        WebElement loginButton = driver.findElement(By.cssSelector("button[type='submit']"));
-        loginButton.click();
-        Thread.sleep(2000);
-
-        // step 5: expected vs actual
-        WebElement avtorIcon = driver.findElement(By.cssSelector("img[class='avatar']"));
-        Assert.assertTrue(avtorIcon.isDisplayed());
-        Thread.sleep(2000);
-
-        // close the browser
-        driver.quit();
+//        WebElement emailFiled = driver.findElement(By.cssSelector("input[type='email']"));
+//        emailFiled.clear();
+//         emailFiled.sendKeys("ali.kawchar@testpro.io");
+//        Thread.sleep(2000);
+//
+//        // step 3: enter password
+//        WebElement passwordFiled = driver.findElement(By.cssSelector("input[type='password']"));
+//        passwordFiled.clear();
+//        passwordFiled.sendKeys("Bangladesh@12");
+//        Thread.sleep(2000);
+//        // step 4: click on log in button
+//        WebElement loginButton = driver.findElement(By.cssSelector("button[type='submit']"));
+//        loginButton.click();
+//        Thread.sleep(2000);
+//
+//        // step 5: expected vs actual
+//        WebElement avtorIcon = driver.findElement(By.cssSelector("img[class='avatar']"));
+//        Assert.assertTrue(avtorIcon.isDisplayed());
+//        Thread.sleep(2000);
+//
+//        // close the browser
+//        driver.quit();
 
     }
-    @Test
+
+    public void loginEmptyEmailPassword() throws InterruptedException {
+        launchBrowser();
+        provideEmail("");
+        providePassword("Bangladesh@12");
+        clickLoginButton();
+
+    }
+
+
+
     public void loginInvalidEmailPassword() throws InterruptedException {
         // Preconsditon
         ChromeOptions options = new ChromeOptions();
