@@ -4,6 +4,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.Assert;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import java.time.Duration;
@@ -11,8 +12,8 @@ import java.time.Duration;
 public class LoginTests extends BaseTest {
 
     @Test
-    public void loginValidEmailPassword() throws InterruptedException {
-        launchBrowser();
+    @Parameters({"BaseUrl"})
+    public void loginValidEmailPassword(String BaseUrl) throws InterruptedException {
         provideEmail("ali.kawchar@testpro.io");
         providePassword("Bangladesh@12");
         clickLoginButton();
@@ -46,11 +47,11 @@ public class LoginTests extends BaseTest {
 //        driver.quit();
 
     }
-
-    public void loginEmptyEmailPassword() throws InterruptedException {
-        launchBrowser();
-        provideEmail("");
-        providePassword("Bangladesh@12");
+    @Test(dataProvider = "NegativeLoginData", dataProviderClass = TestDataProvider.class)
+    public void nagativeTest(String email, String password) throws InterruptedException {
+       // launchBrowser();
+        provideEmail(email);
+        providePassword(password);
         clickLoginButton();
 
     }

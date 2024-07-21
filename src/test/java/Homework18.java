@@ -1,12 +1,14 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 public class Homework18 extends BaseTest{
     @Test
-    public void playSong() throws InterruptedException {
-        launchBrowser();
+    @Parameters({"BaseUrl"})
+    public void playSong(String BaseUrl) throws InterruptedException {
+
         provideEmail("ali.kawchar@testpro.io");
         providePassword("Bangladesh@12");
         clickLoginButton();

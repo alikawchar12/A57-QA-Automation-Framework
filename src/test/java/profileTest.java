@@ -1,15 +1,17 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import java.util.UUID;
 
 public class profileTest extends BaseTest{
     @Test
-    public void changeProfileName() throws InterruptedException {
+    @Parameters({"BaseUrl"})
+    public void changeProfileName(String url) throws InterruptedException {
         // Log in to Koel
-        launchBrowser();
+
         provideEmail("ali.kawchar@testpro.io");
         providePassword("Bangladesh@12");
         clickLoginButton();

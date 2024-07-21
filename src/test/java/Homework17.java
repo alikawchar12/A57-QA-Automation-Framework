@@ -9,7 +9,6 @@ public class Homework17 extends BaseTest{
         String expectedAddToPlaylistMess = "Added 1 song into \"Automation.\"";
        //Steps
        // login to koel
-        launchBrowser();
         provideEmail("ali.kawchar@testpro.io");
         providePassword("Bangladesh@12");
         clickLoginButton();
